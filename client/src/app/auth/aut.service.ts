@@ -1,9 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable()
 export class AuthService {
+  JWTHelper = new JwtHelperService();
+  decodeToken: any;
   constructor(private httpClient: HttpClient) {}
 
   login(payload: { username: string; password: string }) {
@@ -14,13 +17,25 @@ export class AuthService {
           if (response) {
             // save token to local storage
             localStorage.setItem("token", response.token);
+            this.decodeToken = this.JWTHelper.decodeToken(response.token);
           }
         })
       );
   }
 
   loggedIn() {
-    return !!localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    return !this.JWTHelper.isTokenExpired(token);
+  }
+
+  getUserName() {
+    this.decodeToken = this.JWTHelper.decodeToken(
+      localStorage.getItem("token")
+    );
+    if (this.decodeToken) {
+      return this.decodeToken.unique_name;
+    }
+    return "";
   }
 
   logOut() {
