@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthService } from "../auth/aut.service";
-import { AlertifyService } from "../services/alertify/alertify.service";
+import { AuthService } from "../../auth/aut.service";
+import { AlertifyService } from "../../shared/services/alertify/alertify.service";
 import { Router } from "@angular/router";
 
 @Component({

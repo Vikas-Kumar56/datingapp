@@ -4,37 +4,26 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app.routing.module";
 import { AppComponent } from "./app.component";
 import { ValueComponent } from "./value/value.component";
-import { NavComponent } from "./nav/nav.component";
-import { ReactiveFormsModule } from "@angular/forms";
-import { AuthService } from "./auth/aut.service";
-import { HomeComponent } from "./home/home.component";
-import { RegisterComponent } from "./register/register.component";
-import { ErrorInterceptorProvider } from "./services/error.interceptor";
-import { AlertifyService } from "./services/alertify/alertify.service";
-import { BsDropdownModule } from "ngx-bootstrap";
-import { MemberListComponent } from "./member-list/member-list.component";
-import { ListComponent } from "./list/list.component";
-import { MessagesComponent } from "./messages/messages.component";
+import { CoreModule } from "./core/core.module";
+import { AuthModule } from "./auth/auth.module";
+import { ListModule } from "./list/list.module";
+import { MessagesModule } from "./messages/messages.module";
+import { MemberListModule } from "./member-list/member-list.module";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ValueComponent,
-    NavComponent,
-    HomeComponent,
-    RegisterComponent,
-    MemberListComponent,
-    ListComponent,
-    MessagesComponent
-  ],
+  declarations: [AppComponent, ValueComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    AuthModule,
+    ListModule,
+    MessagesModule,
+    MemberListModule,
     AppRoutingModule,
-    BsDropdownModule.forRoot()
+    CoreModule,
+    SharedModule
   ],
-  providers: [AuthService, ErrorInterceptorProvider, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthService } from "../auth/aut.service";
-import { AlertifyService } from "../services/alertify/alertify.service";
+import { AuthService } from "../aut.service";
+import { AlertifyService } from "../../shared/services/alertify/alertify.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-register",
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   @Output() hideRegister: EventEmitter<null> = new EventEmitter();
   constructor(
     private authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe(
       response => {
         this.alertify.success("register successfully");
+        this.router.navigate(["/login"]);
       },
       error => {
         this.alertify.error("Error in registration");

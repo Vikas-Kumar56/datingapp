@@ -19,34 +19,24 @@
         <a class="nav-link " [routerLink]="['/messages']">Messages</a>
       </li>
     </ul>
-    <form
-      *ngIf="!loggedIn()"
-      (ngSubmit)="login()"
-      class="form-inline my-2 my-lg-0"
-      [formGroup]="logInForm"
-    >
-      <input
-        formControlName="username"
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Username"
-        aria-label="Username"
-      />
-      <input
-        formControlName="password"
-        class="form-control mr-sm-2"
-        type="password"
-        placeholder="Password"
-        aria-label="Password"
-      />
-      <button
-        [disabled]="!logInForm.valid"
-        class="btn btn-dark my-2 my-sm-0"
-        type="submit"
-      >
-        Login
-      </button>
-    </form>
+    <div *ngIf="!loggedIn()">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a
+            class="nav-link text-light cursor-pointer ml-1"
+            [routerLink]="['/register']"
+            >Register
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a
+            class="nav-link text-light cursor-pointer"
+            [routerLink]="['/login']"
+            >Login</a
+          >
+        </li>
+      </ul>
+    </div>
     <div *ngIf="loggedIn()" class="dropdown ml-1" dropdown>
       <a class="dropdown-toggle text-light cursor-pointer" dropdownToggle>
         <i class="fa fa-user"></i>
