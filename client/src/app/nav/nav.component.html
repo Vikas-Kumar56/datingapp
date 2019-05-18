@@ -1,15 +1,22 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Dating App</a>
+    <a
+      style="font-family: Monoton,cursive"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="navbar-brand"
+      [routerLink]="['/home']"
+      >Dating App</a
+    >
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Matches</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/lists']">Lists</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#">Messages</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link " [routerLink]="['/messages']">Messages</a>
       </li>
     </ul>
     <form
@@ -34,7 +41,7 @@
       />
       <button
         [disabled]="!logInForm.valid"
-        class="btn btn-success my-2 my-sm-0"
+        class="btn btn-dark my-2 my-sm-0"
         type="submit"
       >
         Login

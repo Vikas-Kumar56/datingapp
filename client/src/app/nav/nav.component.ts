@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "../auth/aut.service";
 import { AlertifyService } from "../services/alertify/alertify.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-nav",
@@ -13,7 +14,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class NavComponent implements OnInit {
       },
       error => {
         console.log(error);
+      },
+      () => {
+        this.router.navigate(["/members"]);
       }
     );
   }
@@ -45,5 +50,6 @@ export class NavComponent implements OnInit {
   logOut() {
     this.authService.logOut();
     this.alertify.message("Logged out");
+    this.router.navigate(["/home"]);
   }
 }
