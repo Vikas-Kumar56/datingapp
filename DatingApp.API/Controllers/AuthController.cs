@@ -7,6 +7,7 @@ using DatingApp.API.Data;
 using DatingApp.API.DTOS;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -31,7 +32,10 @@ namespace DatingApp.API.Controllers
             user.username = user.username.ToLower();
             if (await authRepository.UserExists(user.username))
             {
-                return BadRequest("User Name already taken");
+                ModelStateDictionary error = new ModelStateDictionary();
+                error.AddModelError("username", "User Name already taken");
+                return ValidationProblem(error);
+
             }
 
             var userToCreate = new User()

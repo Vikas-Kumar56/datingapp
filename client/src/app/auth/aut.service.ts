@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
-import { Inject, Injector } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 
-@Inject({})
+@Injectable()
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
@@ -25,5 +25,12 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem("token");
+  }
+
+  register(payload: { username: string; password: string }) {
+    return this.httpClient.post(
+      "http://localhost:5000/api/auth/register",
+      payload
+    );
   }
 }
