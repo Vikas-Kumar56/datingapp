@@ -33,16 +33,6 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.alertify.error("Error in login");
-        error.forEach((value, key) => {
-          let formControl = this.loginForm.get(key);
-
-          if (formControl) {
-            // activate the error message
-            formControl.setErrors({
-              serverError: value
-            });
-          }
-        });
       }
     );
   }
