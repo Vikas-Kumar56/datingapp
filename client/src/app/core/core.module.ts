@@ -9,6 +9,7 @@ import { CommonModule } from "@angular/common";
 import { AppRoutingModule } from "../app.routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuardService } from "../shared/guards/can.activate.guard";
+import { UserService } from "../shared/services/user.service";
 
 @NgModule({
   declarations: [HomeComponent, NavComponent],
@@ -18,7 +19,8 @@ import { AuthGuardService } from "../shared/guards/can.activate.guard";
     AuthService,
     ErrorInterceptorProvider,
     AlertifyService,
-    AuthGuardService
+    AuthGuardService,
+    UserService
   ]
 })
 export class CoreModule {}

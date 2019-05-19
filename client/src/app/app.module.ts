@@ -8,9 +8,12 @@ import { CoreModule } from "./core/core.module";
 import { AuthModule } from "./auth/auth.module";
 import { ListModule } from "./list/list.module";
 import { MessagesModule } from "./messages/messages.module";
-import { MemberListModule } from "./member-list/member-list.module";
 import { SharedModule } from "./shared/shared.module";
+import { JwtModule } from "@auth0/angular-jwt";
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 @NgModule({
   declarations: [AppComponent, ValueComponent],
   imports: [
@@ -19,10 +22,16 @@ import { SharedModule } from "./shared/shared.module";
     AuthModule,
     ListModule,
     MessagesModule,
-    MemberListModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ["localhost:5000"],
+        blacklistedRoutes: ["localhost:5000/api/auth"]
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })
