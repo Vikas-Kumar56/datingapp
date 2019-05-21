@@ -10,6 +10,7 @@ import { AppRoutingModule } from "../app.routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuardService } from "../shared/guards/can.activate.guard";
 import { UserService } from "../shared/services/user.service";
+import { CanDeactivateGuard } from "../shared/guards/can.deactivate.guard";
 
 @NgModule({
   declarations: [HomeComponent, NavComponent],
@@ -20,7 +21,8 @@ import { UserService } from "../shared/services/user.service";
     ErrorInterceptorProvider,
     AlertifyService,
     AuthGuardService,
-    UserService
+    UserService,
+    CanDeactivateGuard
   ]
 })
 export class CoreModule {}

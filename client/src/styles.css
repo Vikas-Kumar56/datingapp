@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../node_modules/bootswatch/dist/united/bootstrap.min.css";
+@import "../node_modules/bootswatch/dist/solar/bootstrap.min.css";
 @import url("https://fonts.googleapis.com/css?family=Monoton&display=swap");
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
 @import "../node_modules/alertifyjs/build/css/alertify.min.css";
@@ -20,7 +20,7 @@
 .member-tabset > .nav-tabs > li:hover > a {
   border: 0;
   background: none !important;
-  color: #333333;
+  color: #ffffff;
 }
 
 .member-tabset > .nav-tabs > li.open > a > i,

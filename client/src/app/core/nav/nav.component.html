@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
     <a
       style="font-family: Monoton,cursive"
@@ -44,7 +44,7 @@
       </a>
 
       <div class="dropdown-menu mt-2" *dropdownMenu>
-        <a class="dropdown-item cursor-pointer"
+        <a class="dropdown-item cursor-pointer" [routerLink]="['/members/edit']"
           ><i class="fa fa-user "></i> Update Profile</a
         >
         <div class="dropdown-divider"></div>

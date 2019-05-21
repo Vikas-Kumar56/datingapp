@@ -15,9 +15,12 @@
           />
           <div
             class="text-danger"
-            *ngIf="registerForm.get('username').errors?.serverError"
+            *ngIf="
+              registerForm.get('username').invalid &&
+              registerForm.get('username').errors['serverError']
+            "
           >
-            {{ registerForm.get("username").errors?.serverError }}
+            {{ registerForm.get("username").errors["serverError"] }}
           </div>
         </div>
 
@@ -34,7 +37,7 @@
         <div class="form-group text-center">
           <button
             [disabled]="!registerForm.valid"
-            class="btn btn-primary"
+            class="btn btn-outline-primary"
             type="submit"
           >
             Register

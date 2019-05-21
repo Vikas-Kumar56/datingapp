@@ -6,14 +6,22 @@ import { MembersComponent } from "./members.component";
 import { MembersRoutingModule } from "./members.routing.module";
 import { MemberDetailComponent } from "./member-detail/member-detail.component";
 import { SharedModule } from "../shared/shared.module";
+import { MemberEditComponent } from "./member-edit/member-edit.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     MemberListComponent,
     MemberCardComponent,
     MembersComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    MemberEditComponent
   ],
-  imports: [CommonModule, MembersRoutingModule, SharedModule]
+  imports: [
+    CommonModule,
+    MembersRoutingModule,
+    SharedModule,
+    ReactiveFormsModule
+  ]
 })
 export class MemberListModule {}

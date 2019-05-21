@@ -38,6 +38,16 @@ export class AuthService {
     return "";
   }
 
+  getUserId() {
+    this.decodeToken = this.JWTHelper.decodeToken(
+      localStorage.getItem("token")
+    );
+    if (this.decodeToken) {
+      return this.decodeToken.nameid;
+    }
+    return "";
+  }
+
   logOut() {
     localStorage.removeItem("token");
   }
