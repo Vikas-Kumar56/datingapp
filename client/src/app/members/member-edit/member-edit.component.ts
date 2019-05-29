@@ -27,7 +27,13 @@ export class MemberEditComponent implements OnInit, CanComponentDeactivate {
       user => {
         this.user = user;
 
-        this.userForm.setValue(this.user);
+        this.userForm.setValue({
+          city: user.city,
+          country: user.country,
+          interests: user.interests,
+          introduction: user.introduction,
+          lookingFor: user.lookingFor
+        });
       },
       error => {
         this.alertify.error("Error in retreiving user information");
@@ -39,28 +45,11 @@ export class MemberEditComponent implements OnInit, CanComponentDeactivate {
 
   initUserForm() {
     this.userForm = new FormGroup({
-      id: new FormControl(""),
-      username: new FormControl(""),
-      knownAs: new FormControl(""),
-      age: new FormControl(""),
-      gender: new FormControl(""),
-      created: new FormControl(""),
-      lastActive: new FormControl(""),
-      photoUrl: new FormControl(""),
       city: new FormControl("", [Validators.required]),
       country: new FormControl("", [Validators.required]),
       interests: new FormControl("", [Validators.required]),
       introduction: new FormControl("", [Validators.required]),
-      lookingFor: new FormControl("", [Validators.required]),
-      photos: new FormArray([
-        new FormGroup({
-          id: new FormControl(""),
-          url: new FormControl(""),
-          description: new FormControl(""),
-          dateAdded: new FormControl(""),
-          isMain: new FormControl("")
-        })
-      ])
+      lookingFor: new FormControl("", [Validators.required])
     });
   }
 

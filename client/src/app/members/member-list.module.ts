@@ -8,6 +8,7 @@ import { MemberDetailComponent } from "./member-detail/member-detail.component";
 import { SharedModule } from "../shared/shared.module";
 import { MemberEditComponent } from "./member-edit/member-edit.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { PhotoEditorComponent } from "./photo-editor/photo-editor.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     MemberCardComponent,
     MembersComponent,
     MemberDetailComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent
   ],
   imports: [
     CommonModule,
