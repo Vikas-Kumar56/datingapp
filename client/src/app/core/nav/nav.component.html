@@ -38,8 +38,10 @@
       </ul>
     </div>
     <div *ngIf="loggedIn()" class="dropdown ml-1" dropdown>
+      <span class="mr-1">
+        <img src="{{ userPhoto ? userPhoto : getUserPhoto() }}" />
+      </span>
       <a class="dropdown-toggle text-light cursor-pointer" dropdownToggle>
-        <i class="fa fa-user"></i>
         Welcome {{ getUserName() | titlecase }}
       </a>
 

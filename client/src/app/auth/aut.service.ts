@@ -17,6 +17,7 @@ export class AuthService {
           if (response) {
             // save token to local storage
             localStorage.setItem("token", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
             this.decodeToken = this.JWTHelper.decodeToken(response.token);
           }
         })
@@ -36,6 +37,15 @@ export class AuthService {
       return this.decodeToken.unique_name;
     }
     return "";
+  }
+
+  getUser() {
+    let user = localStorage.getItem("user");
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return null;
   }
 
   getUserId() {

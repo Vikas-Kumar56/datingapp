@@ -96,5 +96,66 @@ namespace DatingApp.API.Controllers
             return BadRequest("Failed to add photo");
 
         }
+
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> setMainPhoto(int userId, int id)
+        {
+
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            var userEntity = await datingRepository.GetUser(userId);
+            var photoEntity = userEntity.Photos.FirstOrDefault(ph => ph.Id == id);
+            if (photoEntity != null && !photoEntity.IsMain)
+            {
+                userEntity.Photos.FirstOrDefault(p => p.IsMain).IsMain = false;
+                photoEntity.IsMain = true;
+                if (await datingRepository.SaveAll())
+                {
+                    return NoContent();
+                }
+
+
+            }
+
+            return BadRequest("Error is setting main photo");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int userId, int id)
+        {
+
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var userEntity = await datingRepository.GetUser(userId);
+            if (userEntity != null)
+            {
+                var photo = userEntity.Photos.Where(p => p.Id == id).FirstOrDefault();
+
+                if (photo != null)
+                {
+                    if (photo.IsMain)
+                    {
+                        return BadRequest("You cant delete your main photo");
+                    }
+                    var result = cloudinary.Destroy(new DeletionParams(photo.PublicId));
+                    if (result.Result == "ok")
+                    {
+                        userEntity.Photos.Remove(photo);
+                        if (await datingRepository.SaveAll())
+                        {
+                            return NoContent();
+                        }
+                    }
+
+                }
+            }
+
+            return BadRequest();
+        }
     }
 }

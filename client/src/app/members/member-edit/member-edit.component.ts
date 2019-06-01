@@ -40,6 +40,10 @@ export class MemberEditComponent implements OnInit, CanComponentDeactivate {
       }
     );
 
+    // listen main photo emitter
+    this.userService.setMainPhotoEmitter.subscribe(photo => {
+      this.user.photoUrl = photo.url;
+    });
     this.initUserForm();
   }
 
